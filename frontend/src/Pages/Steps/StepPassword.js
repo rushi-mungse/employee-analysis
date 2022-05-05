@@ -2,19 +2,28 @@ import Button from "../../Components/Button";
 import Card from "../../Components/Card";
 import { useState } from "react";
 import Input from "../../Components/Input";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { userAuthenticate } from "../../http";
+import { setAuth } from "../../store/Slices/authSlice";
 
 const StepPassword = () => {
   const email = useSelector((state) => state.auth.email);
+  const dispatch = useDispatch();
   const [password, setPassword] = useState();
   const getPassword = (e) => {
     setPassword(e.target.value);
   };
 
   const postData = async () => {
-    const data = await userAuthenticate({ email, password });
-    console.log(data);
+    if (!email || !password) return alert("All fields are required.");
+    try {
+      const { data } = await userAuthenticate({ email, password });
+      if (data.auth) {
+        dispatch(setAuth(data));
+      }
+    } catch (error) {
+      alert("Iternal error");
+    }
   };
 
   return (
