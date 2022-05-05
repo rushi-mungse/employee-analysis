@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FillForm from "../Layouts/FillForm";
 
 const Dashbord = () => {
   const [link, setLink] = useState("home");
@@ -128,9 +129,11 @@ const Dashbord = () => {
               </div>
             </div>
           </div>
-          {link === "home" && <h1>Home</h1>}
-          {link === "fill-form" && <h1>Fill Form</h1>}
-          {link === "dashbord" && <h1>Dashbord</h1>}
+          <div className="flex items-center justify-center ml-72 flex-col">
+            {link === "home" && <h1>Home</h1>}
+            {link === "fill-form" && <FillForm />}
+            {link === "dashbord" && <h1>Dashbord</h1>}
+          </div>
         </div>
       </div>
     </section>
