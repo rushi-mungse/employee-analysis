@@ -20,7 +20,7 @@ export const authSlice = createSlice({
       }
     },
     setEmail: (state, action) => {
-      const { email } = action.payload;
+      const email = action.payload;
       state.email = email;
     },
   },
