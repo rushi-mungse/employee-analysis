@@ -10,7 +10,9 @@ import Navigation from "./Layouts/Navigation";
 import Authenticate from "./Authenticate";
 import { useSelector } from "react-redux";
 import "./App.css";
-import Dashbord from "./Pages/Dashbord";
+import Employee from "./Pages/Employee";
+import Manager from "./Pages/Manager";
+import Coe from "./Pages/Coe";
 
 function App() {
   return (
@@ -21,16 +23,21 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/authenticate" element={<Authenticate />} />
         </Route>
-        <Route element={<Dashbord />} path="/dashbord" />
+        <Route element={<Employee />} path="/employee/:id" />
+        <Route element={<Manager />} path="/manager/:id" />
+        <Route element={<Coe />} path="/coe/:id" />
       </Routes>
     </Router>
   );
 }
 
 const ProtectedRoutes = () => {
-  const { isAuth } = useSelector((state) => state.auth);
-  console.log(isAuth);
-  return isAuth ? <Navigate to={"/dashbord"} /> : <Outlet />;
+  const { isAuth, user } = useSelector((state) => state.auth);
+  return isAuth && user ? (
+    <Navigate to={`/${user.role}/${user._id}`} />
+  ) : (
+    <Outlet />
+  );
 };
 
 export default App;

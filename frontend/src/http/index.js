@@ -12,4 +12,7 @@ const api = axios.create({
 export const userAuthenticate = async (data) =>
   api.post("/api/authenticate", data);
 
+export const storeEmployeeForm = async (data) =>
+  api.post("/api/store-employee-form", data);
+
 export default api;

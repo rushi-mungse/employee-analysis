@@ -6,6 +6,7 @@ export const authSlice = createSlice({
     isAuth: false,
     user: null,
     email: "",
+    isFilled: false,
   },
 
   reducers: {
@@ -23,9 +24,13 @@ export const authSlice = createSlice({
       const email = action.payload;
       state.email = email;
     },
+    setFilled: (state, action) => {
+      const isFilled = action.payload;
+      state.isFilled = isFilled;
+    },
   },
 });
 
-export const { setAuth, setEmail } = authSlice.actions;
+export const { setAuth, setEmail, setFilled } = authSlice.actions;
 
 export default authSlice.reducer;

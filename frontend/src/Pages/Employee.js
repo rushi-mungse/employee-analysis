@@ -1,8 +1,11 @@
 import { useState } from "react";
 import FillForm from "../Layouts/FillForm";
+import { useSelector } from "react-redux";
+import BarChart from "../Components/BarChar";
 
-const Dashbord = () => {
-  const [link, setLink] = useState("home");
+const Employee = () => {
+  const [link, setLink] = useState("fill-form");
+  const { isFilled } = useSelector((state) => state.auth);
   return (
     <section className="text-gray-600 body-font">
       <div className=" mx-auto flex flex-wrap">
@@ -131,8 +134,12 @@ const Dashbord = () => {
           </div>
           <div className="flex items-center justify-center ml-72 flex-col">
             {link === "home" && <h1>Home</h1>}
-            {link === "fill-form" && <FillForm />}
-            {link === "dashbord" && <h1>Dashbord</h1>}
+            {link === "fill-form" && !isFilled ? (
+              <FillForm />
+            ) : (
+              <h1>Already filled form</h1>
+            )}
+            {link === "dashbord" && <BarChart />}
           </div>
         </div>
       </div>
@@ -140,4 +147,4 @@ const Dashbord = () => {
   );
 };
 
-export default Dashbord;
+export default Employee;

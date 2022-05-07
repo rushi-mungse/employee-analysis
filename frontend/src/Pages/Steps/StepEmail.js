@@ -12,6 +12,7 @@ const StepEmail = ({ onClick }) => {
   const getEmail = (e) => {
     set_email(e.target.value);
     dispatch(setEmail(email));
+    console.log(e.target.value);
   };
 
   return (
@@ -20,7 +21,7 @@ const StepEmail = ({ onClick }) => {
       img="email-emoji"
       backButton={true}
     >
-      <Input placeholder={"Enter email id."} onChange={getEmail} />
+      <Input type="email" placeholder={"Enter email id."} onChange={getEmail} />
       <p className="mb-4 text-center text-gray-400">
         Enter your email address for register your account in this service.
       </p>
